@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", function(e) {
     let name_element = document.getElementById("name");
     let calc_button = document.getElementById("calc");
-    let calc_tds = document.querySelectorAll('input[class="calc"]')
+    let calc_tds = document.querySelectorAll('input[class="calc"]');
+    
 
     //det här funkar bara med en spelare
 
