@@ -9,11 +9,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
             
             /* funkar för input av summa av tärningar 
             (dvs. får jag 3 st femmor fyller jag i 15) */
-            //total += Number(calc_tds[i].value);
+            total += Number(calc_tds[i].value);
 
             /* funkar för input av antal tärningar
             (dvs. får jag 3 st femmor fyller jag i 3) */
-            total += Number(calc_tds[i].value) * (i + 1); 
+            //total += Number(calc_tds[i].value) * (i + 1); 
         }
         console.log(total);
     });
