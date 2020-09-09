@@ -28,11 +28,6 @@ document.addEventListener("DOMContentLoaded", function(e) {
             }
         
         };
-    });
-
-    //behöver en class för varje spelares columner. 
-    //skape en funktion som tar in arrayen och räknar ut summan och skriver ut summan bredvid "sum",
-    
-
+    });    
 
 });
