@@ -1,0 +1,57 @@
+body{
+    background-color:white;
+    font-family: Avenir;
+    text-align:center;
+}
+
+table{
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+th {
+    background-color: rgb(206, 86, 202);
+    border: 1px;
+    border-style: solid;
+}
+
+
+td{
+    border: 1px;
+    border-style: solid;
+    background-color:rgb(255, 161, 232);
+    padding: 2px;
+}
+
+input{
+    background-color:rgb(255, 161, 232);
+    border: 0;
+    border-style: solid;
+    width: 50px;
+}
+
+
+.specialrow td {
+    background-color: rgb(206, 86, 202);
+    text-transform: uppercase;
+    border: 2px;
+    border-style: solid;
+
+}
+
+.specialrow input{
+    background-color: rgb(206, 86, 202);
+
+}
+
+td:nth-child(even) {
+    background-color: rgb(86, 206, 196);
+}
+
+td:nth-child(even) input {
+    background-color: rgb(86, 206, 196);
+}
+
+.specialname{
+    background-color: rgb(255, 126, 75);
+}
