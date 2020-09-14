@@ -1,23 +1,24 @@
 document.addEventListener("DOMContentLoaded", function (e) {
-    let calc_button = document.getElementById("calc");
-    let sum_element = document.getElementById('player1_sum');
-    let bonus_element = document.getElementById('player1_bonus');
+    let player1 = document.getElementById("player1");
+    let player1_sum = document.getElementById("player1_sum");
+    let player1_bonus = document.getElementById("player1_bonus");
 
-    calc_button.addEventListener("click", function (event) {
-        let calc_tds = document.querySelectorAll('input[class="calc"]')
-        let total = 0;
-        for (let i = 0; i < calc_tds.length; i++) {
+    player1_sum.addEventListener("keyup", function (event) {
+        let player1_ints = document.querySelectorAll('input[class="player1"]')
+        let sum = 0;
 
-            total += Number(calc_tds[i].value);
+        for (let i = 0; i < player1_ints.length; i++) {
 
-        }
-        sum_element.value = total;
+            sum += Number(player1_ints[i].value);
+            player1_sum.value = sum;
 
-        if(total >= 63){
-            bonus_element.value = 50;
-        }
-        else{
-            bonus_element.value = 0;
+            if (sum >= 63) {
+                player1_bonus.value = 50;
+            }
+            else {
+                player1_bonus.value = 0;
+            }
+
         }
 
     });
