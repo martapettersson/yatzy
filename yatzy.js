@@ -1,7 +1,4 @@
 document.addEventListener("DOMContentLoaded", function (e) {
-    let player1 = document.getElementById("player1");
-    let player1_bonus = document.getElementById("player1_bonus");
-
     let player1_ints = document.querySelectorAll('input[class="player1"]')
     let player1_sum = document.getElementById("player1_sum");
 
