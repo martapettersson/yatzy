@@ -1,35 +1,30 @@
 document.addEventListener("DOMContentLoaded", function (e) {
-    let name_element = document.getElementById("name");
-    let calc_button = document.getElementById("calc");
-    let sum_element = document.getElementById('player1_sum');
-    let bonus_element = document.getElementById('player1_bonus');
 
-    calc_button.addEventListener("click", function (event) {
-        let calc_tds = document.querySelectorAll('input[class="calc"]')
-        let total = 0;
-        for (let i = 0; i < calc_tds.length; i++) {
-            
-            /* funkar för input av summa av tärningar 
-            (dvs. får jag 3 st femmor fyller jag i 15) */
-            total += Number(calc_tds[i].value);
+    //nodelist med värdena från player1: ones till sixes.
+    let oneToSix = document.querySelectorAll("input.calc");
 
-            /* funkar för input av antal tärningar
-            (dvs. får jag 3 st femmor fyller jag i 3) */
-            //total += Number(calc_tds[i].value) * (i + 1); 
+    //input-elementet med id "player1_sum"
+    let player1Sum = document.getElementById("player1_sum");
+
+    //input-elementet med id "player1_bonus"
+    let player1Bonus = document.getElementById("player1_bonus");
+
+    //förändring i DOM, nollställer sum.
+    document.addEventListener('change', function (e) {
+        let sum = 0;
+        //lägger ihop värdena i oneToSix
+        oneToSix.forEach(function (element) {
+            sum += Number(element.value);
+            player1Sum.value = sum;
+        });
+        
+        //ger bonus om summan är 63 eller högre.
+        if (sum >= 63) {
+            player1Bonus.value = 50;
+        } else {
+            player1Bonus.value = 0;
         }
-        sum_element.value = total;
-
-        if(total >= 63){
-            bonus_element.value = 50;
-        }else{
-            bonus_element.value = 0;
-        }
-
     });
 
-    //behöver en class för varje spelares columner. 
-    //skape en funktion som tar in arrayen och räknar ut summan och skriver ut summan bredvid "sum",
     
-
-
 });
