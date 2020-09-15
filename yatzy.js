@@ -5,17 +5,21 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
 //     let players = ['player1', 'player2', 'player3', 'player4']; 
 
+// arr = [];
 
 //     let calc_tds = document.querySelectorAll(`input[class="player1"]`)
 
 
 let calc_tds = document.querySelectorAll(`input[class="player1"]`)
+
 let player1_sum = document.getElementById('player1_sum')
-let sum = 0;
 
 calc_tds.forEach(function(element){
     element.addEventListener('change', function(e){ 
-        sum += Number(this.value)      
+        sum = 0;
+        for(let i = 0; calc_tds.length > i; i++){
+            sum+= (Number(calc_tds[i].value));
+        }
         player1_sum.value = sum;
     })
 })
