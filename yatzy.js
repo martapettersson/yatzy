@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function (e) {
 
-    //nodelist med värdena från player1: ones till sixes.
+    //HTMLCollection med värdena från player1: ones till sixes.
     let oneToSix = document.querySelectorAll("input.calc");
 
     //input-elementet med id "player1_sum"
@@ -24,6 +24,18 @@ document.addEventListener("DOMContentLoaded", function (e) {
         } else {
             player1Bonus.value = 0;
         }
+    });
+
+    let throwDiceButton = document.getElementById("throwDiceButton");
+
+    function throwDice() {
+        let dieSum = Math.floor(Math.random() * 6) + 1;
+        return dieSum;
+    }
+
+    throwDiceButton.addEventListener('click', function (e) {
+        let dice = document.getElementById("die1");
+        dice.value = throwDice();
     });
 
     
