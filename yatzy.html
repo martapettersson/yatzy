@@ -13,7 +13,7 @@
         <table>
             <tbody>
                 <tr class="specialrow">
-                    <th class="player specialrow">Player</th>
+                    <th class="playerspecialrow">Player</th>
                     <th><input id="player1_name" class="specialrow" type="text" placeholder="Player 1"></th>
                     <th><input class="specialrow" type="text" placeholder="Player 2"></th>
                     <th><input class="specialrow" type="text" placeholder="Player 3"></th>
@@ -22,42 +22,42 @@
                 </tr>
                 <tr>
                     <td class="specialname">Ones</td>
-                    <td><input class='calc' id="player1_ones" type="number"></td>
+                    <td><input class='player1' id="player1_ones" type="number"></td>
                     <td><input id="player2_ones" type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                 </tr>
                 <tr>
                     <td class="specialname">Twos</td>
-                    <td><input class='calc' id="player1_twos" type="number"></td>
+                    <td><input class='player1' id="player1_twos" type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                 </tr>
                 <tr>
                     <td class="specialname">Threes</td>
-                    <td><input class='calc' id="player1_threes" type="number"></td>
+                    <td><input class='player1' id="player1_threes" type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                 </tr>
                 <tr>
                     <td class="specialname">Fours</td>
-                    <td><input class='calc' id="player1_fours" type="number"></td>
+                    <td><input class='player1' id="player1_fours" type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                 </tr>
                 <tr>
                     <td class="specialname">Fives</td>
-                    <td><input class='calc' id="player1_fives" type="number"></td>
+                    <td><input class='player1' id="player1_fives" type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                 </tr>
                 <tr>
                     <td class="specialname">Sixes</td>
-                    <td><input class='calc' id="player1_sixes" type="number"></td>
+                    <td><input class='player1' id="player1_sixes" type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
@@ -148,10 +148,25 @@
                 </tr>
             </tbody>
         </table>
+    </form>
 
-        
-        <button type="button" id ="calc">Beräkna</button>
-
+    <form id="diceForm">
+        <table>
+            <tr>
+                <td><input class="dice" type="text"></td>
+                <td><input class="dice" type="text"></td>
+                <td><input class="dice" type="text"></td>
+                <td><input class="dice" type="text"></td>
+                <td><input class="dice" type="text"></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="" id=""></td>
+                <td><input type="checkbox" name="" id=""></td>
+                <td><input type="checkbox" name="" id=""></td>
+                <td><input type="checkbox" name="" id=""></td>
+                <td><input type="checkbox" name="" id=""></td>
+            </tr>
+            <input id="throwDice" type="button" value="Kasta">
     </form>
 
     <script src="yatzy.js"></script>

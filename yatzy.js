@@ -1,26 +1,72 @@
 document.addEventListener("DOMContentLoaded", function (e) {
-    let name_element = document.getElementById('name');
-    let calc_button = document.getElementById('calc');
-    let sum_element = document.getElementById('player1_sum');
-    let bonus_element = document.getElementById('player1_bonus');
 
-    calc_button.addEventListener("click", function (event) {
-        let calc_tds = document.querySelectorAll('input[class="calc"]');
-        let total = 0;
-        for (let i = 0; i < calc_tds.length; i++) {
-            total += Number(calc_tds[i].value); 
-        }
-        sum_element.value = total;
+    let throwDiceButton = document.getElementById('throwDice');
+    let oneToSixCollection = document.querySelectorAll('input.player1');
+    //console.log(oneToSixCollection);
 
-        if(total >= 63){
-            bonus_element.value = 50;
-        }else{
-            bonus_element.value = 0;
-        }
+    //lägg till eventlistener på alla tds, så fort yatzytabellen ändras uppdateras också summafältet + bonusfältet:
+    oneToSixCollection.forEach(function(element){
+        element.addEventListener('change', function(e){
+
+            //skapa en ny array med map från oneToSixCollection (html collection)
+            let oneToSixArr = Array.from(oneToSixCollection);
+            let oneToSixArray = oneToSixArr.map((num) => {
+            return Number(num.value);
+            });
+            console.log(oneToSixArray);
+
+            // använd reduce för att få summarn från arrayen oneToSixArray och skriva ut den i sum:
+            let reducedArray = oneToSixArray.reduce((sum, currValue) => {
+                return sum + currValue;
+            }, 0);
+            console.log(reducedArray);
+
+            //skriver ut summan i "sum"-fältet:
+            let player1_sum = document.getElementById('player1_sum');
+            player1_sum.value = reducedArray;
+
+            //bonusfältet fylls i med 50 ifall summafältet är mer är 63:
+            let player1_bonus = document.getElementById('player1_bonus');
+            if(player1_sum.value >= 63){
+                player1_bonus.value = 50;
+            } else{
+                player1_bonus.value = 0;
+            }
+         });
+     });
+
+    //add eventlistener på knappen. när knappen trycks gör den random nummer till alla textrutorna
+    throwDiceButton.addEventListener('click', function(element){
+        let dice = document.querySelectorAll('input.dice');
+        let diceArray = Array.from(dice);
+        //console.log(diceArray);
+
+        for(let die of diceArray){
+            die.value = Math.floor((Math.random() * 6)+1);
+            //console.log(die.value);
+        };
+        //random nummer skrivs ut i textrutorna, förutom om de är ikryssade
+    
     });
+
+    
+    
+    
+    
     
 
-    // ägg in eventlyssnare på varje td, typ change, så att summan uppdataeras automatiskt 
+
+
+    
+    
+    
+
+
+
+
+    
+
+    
     
     
 
