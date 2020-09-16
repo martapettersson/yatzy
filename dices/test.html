@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+
+    <div class="dice-container">
+        <!-- dice 1 container -->
+        <div class="dice first-face">
+            <span class="dot"></span>
+        </div>
+         <!-- dice 2 container -->
+        <div class="dice second-face">
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+         <!-- dice 3 container -->
+        <div class="dice third-face">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+         <!-- dice 4 container -->
+        <div class="dice forth-face">
+            <div class='column'>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <div class='column'>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+         <!-- dice 5 container -->
+        <div class="dice fifth-face">
+            <div class='column'>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <div class='column'>
+                <span class="dot"></span>
+            </div>
+            <div class='column'>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+         <!-- dice 6 container -->
+        <div class="dice sixth-face">
+            <div class='column'>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <div class='column'>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </div>    
+       
+    
+    <!-- det här under ska ersättas -->
+
+
+        <span class='dice' id='dice-1'></span>
+        <span class='dice' id="dice-2"></span>
+        <span class='dice' id="dice-3"></span>
+        <span class='dice' id="dice-4"></span>
+        <span class='dice' id="dice-5"></span>
+        <br>
+        
+        <input id="checkbox-1" type="checkbox">
+         <input id="checkbox-2" type="checkbox">
+         <input id="checkbox-3" type="checkbox">
+         <input id="checkbox-4" type="checkbox">
+         <input id="checkbox-5" type="checkbox">
+        <br>
+        Antal kast kvar: <span id="remaining-throws">3</span>
+        <button type="button" id="dice-trigger">Slå tärningar</button>
+      </form>
+      <script src="index.js"></script>
+</body>
+</html>
+
