@@ -1,40 +1,52 @@
 document.addEventListener("DOMContentLoaded", function(e) {
-    let name_element = document.getElementById("name");
-    let calc_button = document.getElementById("calc");
-    let sum_element = document.getElementById('player1_sum');
-    let bonus_element = document.getElementById('player1_bonus');
-    
+//     let name_element = document.getElementById("name");
+//     let calc_button = document.getElementById("calc");
+//     let bonus_element = document.getElementById('player1_bonus');
 
-    //det här funkar bara med en spelare
+//     let players = ['player1', 'player2', 'player3', 'player4']; 
 
-    let current_class = ['calc', 'calc2', 'calc3', 'calc4'];
 
-    calc_button.addEventListener("click", function(event) {
+//     let calc_tds = document.querySelectorAll(`input[class="player1"]`)
 
-        for (let i = 0; i < current_class.length; i++) {
 
-            let calcs_td = document.querySelectorAll(`input[class="${current_class[i]}"]`)
-            
-            let total = 0;
+let calc_tds = document.querySelectorAll(`input[class="player1"]`)
+let player1_sum = document.getElementById('player1_sum')
+let sum = 0;
 
-            for (let i = 0; i < calc_tds.length; i++) {
-                total += Number(calc_tds[i].value)
-            }
+calc_tds.forEach(function(element){
+    element.addEventListener('change', function(e){ 
+        sum += Number(this.value)      
+        player1_sum.value = sum;
+    })
+})
 
-            sum_element.value = total; //här blir det problem
+//variabel sum = 0
 
-            if(total >= 63){
-                bonus_element.value = 50;
-            }else{
-                bonus_element.value = 0;
-            }
-        };
 
-    });
 
-    //behöver en class för varje spelares columner. 
-    //skape en funktion som tar in arrayen och räknar ut summan och skriver ut summan bredvid "sum",
-    
+//     calc_button.addEventListener("click", function(event) {
 
+        
+//         for (let i = 0; i < players.length; i++) {
+
+//             let total = 0;
+//             let bonus_element = document.getElementById(`${players[i]}_bonus`);
+//             let sum_element = document.getElementById(`${players[i]}_sum`);
+//             let calc_tds = document.querySelectorAll(`input[class="${players[i]}"]`)
+
+//             for (let i = 0; i < calc_tds.length; i++) {
+//                 total += Number(calc_tds[i].value)
+//             }
+
+//             sum_element.value = total;
+
+//             if (total >= 63){
+//                 bonus_element.value = 50;
+//             } else {
+//                 bonus_element.value = 0;
+//             }
+        
+//         };
+//     });    
 
 });
