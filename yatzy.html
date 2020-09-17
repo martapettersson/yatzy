@@ -11,33 +11,33 @@
 <body>
     <h1>YATZY</h1>
 
-    <form id="dicethrow">
-        <input type="text">
-        <input type="checkbox" id="dice1" name="dice1">
-        <label for="dice1">Dice 1</label>
+    <form id="dice_form">
+        <div>
+            <span>
+            <p class="dice_value">0</p>
+            <p class="dice_value">0</p>
+            <p class="dice_value">0</p>
+            <p class="dice_value">0</p>
+            <p class="dice_value">0</p>
+            </span>
+        </div>
+        <div>
+            <span>
+            <input type="checkbox" class="checkbox">
+            <input type="checkbox" class="checkbox">
+            <input type="checkbox" class="checkbox">
+            <input type="checkbox" class="checkbox">
+            <input type="checkbox" class="checkbox">
+        </span>
+        </div>
+
         <br>
-        <input type="text">
-        <input type="checkbox" id="dice2" name="dice2">
-        <label for="dice1">Dice 2</label>
-        <br>
-        <input type="text">
-        <input type="checkbox" id="dice3" name="dice3">
-        <label for="dice5">Dice 3</label>
-        <br>
-        <input type="text">
-        <input type="checkbox" id="dice4" name="dice4">
-        <label for="dice4">Dice 4</label>
-        <br>
-        <input type="text">
-        <input type="checkbox" id="dice5" name="dice5">
-        <label for="dice5">Dice 5</label>
-        <br>
-        <button type="button" name="throwdices">Throw Dices</button>
+        <button type="button" id="throw_dices_button">Throw Dices</button>
 
     </form>
     <br>
 
-    <form id="number_sheet">
+    <form id="yatzy_form">
         <table>
             <tbody>
                 <tr class="specialrow">
