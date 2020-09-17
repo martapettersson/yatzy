@@ -55,3 +55,9 @@ td:nth-child(even) input {
 .specialname{
     background-color: rgb(255, 141, 75);
 }
+
+p{
+    max-width: 20px;
+    display: inline;
+    
+}

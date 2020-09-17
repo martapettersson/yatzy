@@ -38,17 +38,14 @@ document.addEventListener("DOMContentLoaded", function (e) {
     //add eventlistener på knappen. när knappen trycks ges random nummer till tillhörande labels
     let timesThrown = 0; //håller koll på antal slag
     throwDiceButton.addEventListener('click', function(element){
-
-        let checkboxes = document.querySelectorAll('.diceCheck');
-        console.log(checkboxes);
-        for(let checkbox of checkboxes){
-            if(!checkbox.checked){
+        let diceValue = document.querySelectorAll('.dice_value');
+        let checkbox = document.querySelectorAll('.checkbox');
+        for(i = 0; i <5; i++){ //loopar igenom alla checkboxar/tärningsvärden, om inte boxen på nuvarande index är kyssad: ge värdet på samma index ett random nummer
+            if(!checkbox[i].checked){
                 let random = Math.floor((Math.random() * 6)+1);
-                let currentBox = checkbox.getAttribute('name');
-                console.log(document.querySelector('label[for='+ currentBox +']'));
-                document.querySelector('label[for='+ currentBox +']').innerHTML = random;
+                diceValue[i].innerHTML = random;
             }
-        };
+        }
         timesThrown++;
         if(timesThrown >= 3){ // när man slagit tre slag fungerar inte knappen längre
             throwDiceButton.disabled = true;
