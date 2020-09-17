@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
     let times_thrown = 0;
     let throw_dices_button = document.getElementById("throw_dices_button")
-    console.log(throw_dices_button);
     throw_dices_button.addEventListener("click", function (e) {
         let dice_value = document.querySelectorAll(".dice_value");
         let checkbox = document.querySelectorAll(".checkbox")
