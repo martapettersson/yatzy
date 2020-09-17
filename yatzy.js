@@ -35,29 +35,24 @@ document.addEventListener("DOMContentLoaded", function (e) {
          });
      });
 
-    //add eventlistener på knappen. när knappen trycks gör den random nummer till alla textrutorna
+    //add eventlistener på knappen. när knappen trycks ges random nummer till tillhörande labels
     let timesThrown = 0; //håller koll på antal slag
     throwDiceButton.addEventListener('click', function(element){
 
-        let dice = document.querySelectorAll('input.dice');
-        let diceArray = Array.from(dice);
-        //console.log(diceArray);
-
-       
-        for(let die of diceArray){
-            
-            die.value = Math.floor((Math.random() * 6)+1);
-            //console.log(die.value);
+        let checkboxes = document.querySelectorAll('.diceCheck');
+        console.log(checkboxes);
+        for(let checkbox of checkboxes){
+            if(!checkbox.checked){
+                let random = Math.floor((Math.random() * 6)+1);
+                let currentBox = checkbox.getAttribute('name');
+                console.log(document.querySelector('label[for='+ currentBox +']'));
+                document.querySelector('label[for='+ currentBox +']').innerHTML = random;
+            }
         };
-        timesThrown++; 
-        console.log(timesThrown);
-       
+        timesThrown++;
         if(timesThrown >= 3){ // när man slagit tre slag fungerar inte knappen längre
             throwDiceButton.disabled = true;
-        }
-        
-        
-    
+        } 
     });
 
 
