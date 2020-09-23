@@ -23,7 +23,9 @@ document.addEventListener('DOMContentLoaded', function(){
       if(checkboxes[i].checked === false && remainingThrows > 0){
           let uncheckedBoxes = document.querySelectorAll('input[type="checkbox"]:not(:checked)')
           let newValues = generateRandomNumber(uncheckedBoxes.length);
-  
+
+          //det här under behöver ändras. 
+          //tryck in ett tärningselement med motsvarande värde.
           for (let i = 0; i < uncheckedBoxes.length; i++){
               let id = uncheckedBoxes[i].id.slice(9)
               document.querySelector(`span[id='dice-${id}']`).innerHTML = newValues[i];

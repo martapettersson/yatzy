@@ -9,15 +9,20 @@
 <body>
     <form action="">
 
-    <div class="dice-container">
-        <!-- dice 1 container -->
-        <div class="dice first-face">
-            <span class="dot"></span>
+    <div class="container">
+        <div class="dice-check-container">
+            <!-- dice 1 container -->
+            <div class="dice first-face">
+                <span class="dot"></span>
+            </div>
+            <input type="checkbox">
         </div>
          <!-- dice 2 container -->
-        <div class="dice second-face">
-            <span class="dot"></span>
-            <span class="dot"></span>
+        <div class="dice-check-container">
+            <div class="dice second-face">
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
         </div>
          <!-- dice 3 container -->
         <div class="dice third-face">
@@ -69,7 +74,7 @@
     <!-- det här under ska ersättas -->
 
 
-        <span class='dice' id='dice-1'></span>
+        <!-- <span class='dice' id='dice-1'></span>
         <span class='dice' id="dice-2"></span>
         <span class='dice' id="dice-3"></span>
         <span class='dice' id="dice-4"></span>
@@ -81,7 +86,7 @@
          <input id="checkbox-3" type="checkbox">
          <input id="checkbox-4" type="checkbox">
          <input id="checkbox-5" type="checkbox">
-        <br>
+        <br> -->
         Antal kast kvar: <span id="remaining-throws">3</span>
         <button type="button" id="dice-trigger">Slå tärningar</button>
       </form>

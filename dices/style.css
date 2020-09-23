@@ -2,9 +2,14 @@ span {
     margin: 6px;
   }
 
-.dice-container{
+.container{
   display: flex;
   flex-direction: row;
+}
+
+.dice-check-container{
+  display: flex;
+  flex-direction: column;
 }
 
 .dice{

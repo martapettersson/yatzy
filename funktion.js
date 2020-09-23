@@ -1,3 +1,5 @@
+//vad fan är det här?
+
 let calc_tds = document.querySelectorAll(`input[class="player1"]`)
 let player1_sum = document.getElementById('player1_sum')
 
