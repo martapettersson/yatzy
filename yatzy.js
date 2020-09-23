@@ -11,24 +11,49 @@ document.addEventListener("DOMContentLoaded", function(e) {
             
         }
 
-        //disables the checkboxes when the player has 3 remaining throws.
+        //disables the checkboxes when the player has 3 remaining throws. måste implementeras!
         disableCheckboxes(){
             this.checkboxes.forEach(function(element){
                 element.disabled = true;
             })
         }
 
+        updateThrows(){
+            let dicesLeft = document.getElementById('remaining-throws');
+            this.state.remainingThrows =- 1
+            dicesLeft.innerHTML = this.state.remainingThrows
+            if(this.remainingThrows === 0){
+                this.checkboxes.forEach(function(element){
+                    element.disabled = false;
+                    element.checked = false;
+                })
+            }
+        }
+
+        updateRound(){
+            this.state.remainingThrows = 3;
+            this.checkboxes.forEach(function(element){
+                element.disabled = false;
+                element.checked = false;
+            })
+
+        }
+
         //updates the round and number of throws. if remaining throws is 3 when the round starts (initiated by the button click) the checkboxes are enabled.
         updateRoundAndThrow(){
+            //remaining throws - 1
+            //r
             let remainingThrows = this.state.remainingThrows  
             let dicesLeft = document.getElementById('remaining-throws');
 
             if (remainingThrows === 3){ 
                 this.checkboxes.forEach(function(element){
                     element.disabled = false;
+                    element.checked = false;
                 })
             }
 
+            //kollar att det finns minst en checkbox vars checked-värde är false.
             if(Array.from(this.checkboxes).filter(e => e.checked === false).length > 0){
                 this.state.remainingThrows -= 1        
                 this.state.round++
@@ -37,6 +62,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
             if(this.state.remainingThrows === 0){
                 this.state.remainingThrows = 3
             }
+
             dicesLeft.innerHTML = this.state.remainingThrows
         }
 
@@ -87,8 +113,16 @@ document.addEventListener("DOMContentLoaded", function(e) {
             this.dice_values = [0, 0, 0, 0, 0, 0, 0];        
             for (let i = 0; i < size; i++) {
                 this.dice.push(new Die());
+        //     this.combinations = {
+        //         pair: false,
+        //         triple: true,
+        // };
             }        
             this.calculateDiceValues();
+        }
+
+        checkCombinations(){
+            //kör igenom alla metoder och kollar vilka kombinationer som fungerar: pushar true till objetet om det fungerar.
         }
 
         calculateDiceValues() {
@@ -127,38 +161,39 @@ document.addEventListener("DOMContentLoaded", function(e) {
         }
     }
 
-    //lägg in selector för knappen.
-
-
-    const diceTrigger = document.getElementById('dice-trigger');
-
+    //compare-dice-array = [];
     let game = new GameState();
     let interface = new Interface();
 
-    
+    const diceTrigger = document.getElementById('dice-trigger');
+
+
     diceTrigger.addEventListener('click', function(){
 
+        // if(game.state.remainingThrows > 0){
+            
+        // }
         game.updateRoundAndThrow(); //håller koll på hur många slag man har, vilken runda man är på
+        //den här ska uppdateras när värdet är. döp om till update gamestate
         let uncheckedArray = interface.CheckBoxStatus() //skapar en HTML-collection med alla checkboxar som är unchecked
         let dice = new Dice(uncheckedArray.length); //skapar ett nytt dice-objekt med så många tärningar som det finns unchecked boxes.
-        interface.displayDiceValues(uncheckedArray, dice.dice) //skriver ut tärningsvärdena i dice-objektets dice-array på sidan.
-        //välj ett värde
+        interface.displayDiceValues(uncheckedArray, dice.dice) //skriver ut tärningsvärdena från dice-objektets dice-array på sidan.
+
+        //ha möjlighet välj ett värde
         game.calculateSum()
 
     })
 
 
 
-    // while(game.state.round < 16){
-        if(game.state.remainingThrows === 3){
-            game.disableCheckboxes();
-        }
+    // while(game.state.round < 16)
         //uppdatera DOMen med nya värden
     // }
 
  
 });
 
+//
 //behövs verkligen while-loopen
 //var ska man sätta tillbaka rem
 //var ska man kunna lägga till poäng?
