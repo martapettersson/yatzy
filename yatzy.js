@@ -175,16 +175,16 @@ document.addEventListener("DOMContentLoaded", function(e) {
         }
         // game.updateRoundAndThrow(); //håller koll på hur många slag man har, vilken runda man är på
         //den här ska uppdateras när värdet är. döp om till update gamestate
-        let uncheckedArray = interface.CheckBoxStatus() //skapar en HTML-collection med alla checkboxar som är unchecked
+        let uncheckedIndexArray = interface.CheckBoxStatus() //skapar en HTML-collection med alla checkboxar som är unchecked
 
         // let dice = new Dice(uncheckedArray.length); //skapar ett nytt dice-objekt med så många tärningar som det finns unchecked boxes.
 
-        for (let index of uncheckedArray){
+        for (let index of uncheckedIndexArray){
             dice.dice[index] = new Die()
         }
 
         //här kör man skapar man nya die-objekt och pushar dom till dice-objektets array. använd motsvarande index i checked.array
-        interface.displayDiceValues(uncheckedArray, dice.dice) //skriver ut tärningsvärdena från dice-objektets dice-array på sidan.
+        interface.displayDiceValues(uncheckedIndexArray, dice.dice) //skriver ut tärningsvärdena från dice-objektets dice-array på sidan.
         
         game.updateThrows()
         //ha möjlighet välj ett värde
@@ -197,6 +197,14 @@ document.addEventListener("DOMContentLoaded", function(e) {
         saveButton.disabled = true;
         interface.displayDiceValues();
     })
+
+    //skapa dropdownmeny
+    //alla alternativ finns från början.
+    //när man väljer något alternativ och trycker på spara triggas en event som kollar den nuvarande
+    //tärningskombinationen i dice.den funktion som motsvarar det (sätt id på alla select options) 
+    //ett objekt som kontrollerar om kombinationen är true/false;
+    //om funktionen returnerar false 
+
  
 });
 
