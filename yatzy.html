@@ -22,42 +22,42 @@
                 </tr>
                 <tr>
                     <td class="specialname">Ones</td>
-                    <td><input class='player1' id="player1_ones" type="number"></td>
+                    <td><input class='player1Top' id="player1_ones" type="number"></td>
                     <td><input id="player2_ones" type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                 </tr>
                 <tr>
                     <td class="specialname">Twos</td>
-                    <td><input class='player1' id="player1_twos" type="number"></td>
+                    <td><input class='player1Top' id="player1_twos" type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                 </tr>
                 <tr>
                     <td class="specialname">Threes</td>
-                    <td><input class='player1' id="player1_threes" type="number"></td>
+                    <td><input class='player1Top' id="player1_threes" type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                 </tr>
                 <tr>
                     <td class="specialname">Fours</td>
-                    <td><input class='player1' id="player1_fours" type="number"></td>
+                    <td><input class='player1Top' id="player1_fours" type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                 </tr>
                 <tr>
                     <td class="specialname">Fives</td>
-                    <td><input class='player1' id="player1_fives" type="number"></td>
+                    <td><input class='player1Top' id="player1_fives" type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                 </tr>
                 <tr>
                     <td class="specialname">Sixes</td>
-                    <td><input class='player1' id="player1_sixes" type="number"></td>
+                    <td><input class='player1Top' id="player1_sixes" type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
@@ -78,70 +78,70 @@
                 </tr>
                 <tr>
                     <td class="specialname">Pair</td>
-                    <td><input type="number"></td>
+                    <td><input class="player1Bottom" type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                 </tr>
                 <tr>
                     <td class="specialname">Two Pairs</td>
-                    <td><input type="number"></td>
+                    <td><input class="player1Bottom" type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                 </tr>
                 <tr>
                     <td class="specialname">Three Of A Kind</td>
-                    <td><input type="number"></td>
+                    <td><input class="player1Bottom" type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                 </tr>
                 <tr>
                     <td class="specialname">Four Of A Kind</td>
-                    <td><input type="number"></td>
+                    <td><input class="player1Bottom" type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                 </tr>
                 <tr>
                     <td class="specialname">Small Straight</td>
-                    <td><input type="number"></td>
+                    <td><input class="player1Bottom" type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                 </tr>
                 <tr>
                     <td class="specialname">Large Straight</td>
-                    <td><input type="number"></td>
+                    <td><input class="player1Bottom" type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                 </tr>
                 <tr>
                     <td class="specialname">Full House</td>
-                    <td><input type="number"></td>
+                    <td><input class="player1Bottom" type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                 </tr>
                 <tr>
                     <td class="specialname">Chance</td>
-                    <td><input type="number"></td>
+                    <td><input class="player1Bottom" type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                 </tr>
                 <tr>
                     <td class="specialname">Yatzy</td>
-                    <td><input type="number"></td>
+                    <td><input class="player1Bottom" type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                     <td><input type="number"></td>
                 </tr>
                 <tr class="specialrow">
                     <th class="total specialrow">Total</th>
-                    <th><input class="specialrow" type="number"></th>
+                    <th><input id="totalSumPlayer1" class="specialrow" type="number"></th>
                     <th><input class="specialrow" type="number"></th>
                     <th><input class="specialrow" type="number"></th>
                     <th><input class="specialrow" type="number"></th>
@@ -174,6 +174,10 @@
 
         <input id="throwDice" type="button" value="Kasta">
         <input id="doneButton" type="button" value="Klar">
+
+        <div id="messageHolder">
+
+        </div>
         
 
         <!--

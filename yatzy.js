@@ -13,11 +13,7 @@ class Die {
  //--------------class för tärningsuppsättning---------
 class Dice {
     constructor(){
-        // klar pnappen
-        let doneButton = document.getElementById('doneButton');
-        this.throw = this.throwDice();
-        console.log(doneButton);        
-        doneButton.addEventListener('click', this.uppdateRound());
+        this.throw = this.throwDice();       
 
     }
 
@@ -39,11 +35,12 @@ class Dice {
             throwDiceButton.disabled = true;
         } 
     }
-    //metod för att uppdatera ny runda: få tre nya kast
+    /*
+    //metod för att uppdatera ny runda: få tre nya kast. ttimesThrown = 0;
     uppdateRound(){
         console.log('done');
 
-    }
+    }*/
     //lägg till andra tärningsmetoder här, fullhouse osv.. 
     
 }
@@ -57,11 +54,12 @@ class Gameboard {
     }
 
     calculateSum(){
-        let calc_tds = document.querySelectorAll('input.player1')
+        let calc_tds = document.querySelectorAll('input.player1Top')
         let player1_sum = document.getElementById('player1_sum')
         calc_tds.forEach(function(element){
              element.addEventListener('change', function(e){ 
-             player1_sum.value = Array.from(calc_tds).reduce((acc, curr) => acc + Number(curr.value), 0)
+             player1_sum.value = Array.from(calc_tds).reduce((acc, curr) => 
+             acc + Number(curr.value), 0)
             })
         })
     }
@@ -74,20 +72,38 @@ class Gameboard {
             player1_bonus.value = 0;
         }
     }
+    calculateTotalSum(){
+        let calc_tds = document.querySelectorAll('input.player1Bottom')
+        let player1_TotalSum = document.getElementById('totalSumPlayer1')
+       // let currentTopSum = document.query('#player1_sum'); FORTSÄTTHÄR
+        console.log(currentTopSum);
+        calc_tds.forEach(function(element){
+             element.addEventListener('change', function(e){ 
+             player1_TotalSum.value = Array.from(calc_tds).reduce((acc, curr) => acc + Number(curr.value), 0)
+            })
+        })
+    }
+        
+        
+        
 }
 
 
 
-   //knappen som kastar tärning
+   
+
+//knappen som kastar tärning
     let throwDiceButton = document.getElementById('throwDice');
     
     
 
     //håller koll på antal slag en spelare har per runda
     let timesThrown = 0; 
+    let round = 1;
 
     let game = new Gameboard();
     game.calculateSum();
+    game.calculateTotalSum();
     
     // när knappen trycks uppdateras gameBoard och tärningsformuläret. 
     throwDiceButton.addEventListener('click', function(element){ 
@@ -97,7 +113,24 @@ class Gameboard {
 
        
     });
-    
+
+    // klar knappen: enablar kastknappen igen och uppdaterar antal kast till 3
+    let doneButton = document.getElementById('doneButton');
+    doneButton.addEventListener('click', function(){
+        console.log('done');
+        throwDiceButton.disabled = false;
+        timesThrown = 0;
+        round++;
+        console.log('round:' + round);
+        if(round === 15){
+            let messageHolder = document.getElementById('messageHolder');
+            let gameOverMessage = document.createElement('p');
+            gameOverMessage.innerHTML = 'game Over';
+            messageHolder.append(gameOverMessage);
+            
+        }
+
+    });
 
     
     
