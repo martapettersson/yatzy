@@ -47,25 +47,19 @@ class Gameboard {
     }
 
     calculateSum(){
-        let oneToSixCollection = document.querySelectorAll('input.player1');
-        let oneToSixCollToArr = Array.from(oneToSixCollection);
-        let oneToSixArray = oneToSixCollToArr.map((num) => { // behöver ej göra om med map?
-        return Number(num.value);
+        //let oneToSixCollection = document.querySelectorAll('input.player1');
+        // let oneToSixCollToArr = Array.from(oneToSixCollection);
+        // let oneToSixArray = oneToSixCollToArr.map((num) => { // behöver ej göra om med map?
+        // return Number(num.value);}
 
-        
-        oneToSixCollection.forEach(function(element){
-        element.addEventListener('change', function(e){ 
-        player1_sum.value = Array.from(calc_tds).reduce((acc, curr) => acc + Number(curr.value), 0)
-    })
-})
 
-        });
-        let reducedArray = oneToSixArray.reduce((sum, currValue) => {
-            return sum + currValue;
-        }, 0);
-
-        let player1_sum = document.getElementById('player1_sum');
-        player1_sum.value = reducedArray;
+        let calc_tds = document.querySelectorAll('input.player1')
+        let player1_sum = document.getElementById('player1_sum')
+        calc_tds.forEach(function(element){
+             element.addEventListener('change', function(e){ 
+             player1_sum.value = Array.from(calc_tds).reduce((acc, curr) => acc + Number(curr.value), 0)
+            })
+        })
     }
 
     checkBonus(){
@@ -87,14 +81,13 @@ class Gameboard {
     let timesThrown = 0; 
 
     let game = new Gameboard();
-    game.calculateSum();
     
     // när knappen trycks uppdateras gameBoard och tärningsformuläret. 
     throwDiceButton.addEventListener('click', function(element){ 
     
     let newDice = new Dice();
     //let game = new Gameboard();
-    
+    game.calculateSum();
        
     });
     
