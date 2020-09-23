@@ -42,8 +42,8 @@ class Dice {
 
 class Gameboard {
     constructor(){
-        this.sum = this.calculateSum();
-        this.bonus = this.checkBonus();
+        //this.sum = this.calculateSum();
+        //this.bonus = this.checkBonus();
     }
 
     calculateSum(){
@@ -51,6 +51,13 @@ class Gameboard {
         let oneToSixCollToArr = Array.from(oneToSixCollection);
         let oneToSixArray = oneToSixCollToArr.map((num) => { // behöver ej göra om med map?
         return Number(num.value);
+
+        
+        oneToSixCollection.forEach(function(element){
+        element.addEventListener('change', function(e){ 
+        player1_sum.value = Array.from(calc_tds).reduce((acc, curr) => acc + Number(curr.value), 0)
+    })
+})
 
         });
         let reducedArray = oneToSixArray.reduce((sum, currValue) => {
@@ -79,13 +86,15 @@ class Gameboard {
     //håller koll på antal slag en spelare har per runda
     let timesThrown = 0; 
 
-    // let gamee = new Gameboard();
+    let game = new Gameboard();
+    game.calculateSum();
     
     // när knappen trycks uppdateras gameBoard och tärningsformuläret. 
     throwDiceButton.addEventListener('click', function(element){ 
     
     let newDice = new Dice();
-    let game = new Gameboard();
+    //let game = new Gameboard();
+    
        
     });
     
