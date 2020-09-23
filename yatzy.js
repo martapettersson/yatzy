@@ -1,34 +1,4 @@
 document.addEventListener("DOMContentLoaded", function(e) {
-<<<<<<< HEAD
-//     let name_element = document.getElementById("name");
-//     let calc_button = document.getElementById("calc");
-//     let bonus_element = document.getElementById('player1_bonus');
-
-//     let players = ['player1', 'player2', 'player3', 'player4']; 
-
-// arr = [];
-
-//     let calc_tds = document.querySelectorAll(`input[class="player1"]`)
-
-
-let calc_tds = document.querySelectorAll(`input[class="player1"]`)
-
-let player1_sum = document.getElementById('player1_sum')
-
-calc_tds.forEach(function(element){
-    element.addEventListener('change', function(e){ 
-        sum = 0;
-        for(let i = 0; calc_tds.length > i; i++){
-            sum+= (Number(calc_tds[i].value));
-        }
-        player1_sum.value = sum;
-    })
-})
-
-//variabel sum = 0
-
-=======
->>>>>>> e2223c81293bb39ff1e6048561571b387a3c7027
 
     
     class GameState{
@@ -41,62 +11,40 @@ calc_tds.forEach(function(element){
             
         }
 
-        //disables the checkboxes when the player has 3 remaining throws. måste implementeras!
-        disableCheckboxes(){
-            this.checkboxes.forEach(function(element){
-                element.disabled = true;
-            })
-        }
-
         updateThrows(){
             let dicesLeft = document.getElementById('remaining-throws');
-            this.state.remainingThrows =- 1
-            dicesLeft.innerHTML = this.state.remainingThrows
-            if(this.remainingThrows === 0){
+            let diceTrigger = document.getElementById('dice-trigger');  
+            if (this.state.remainingThrows === 3){
                 this.checkboxes.forEach(function(element){
                     element.disabled = false;
+                })
+            }
+            if(Array.from(this.checkboxes).filter(e => e.checked === false).length > 0){
+                this.state.remainingThrows -= 1
+                dicesLeft.innerHTML = this.state.remainingThrows
+            }
+              
+            if(this.state.remainingThrows === 0){
+                this.checkboxes.forEach(function(element){
+                    element.disabled = true;
                     element.checked = false;
                 })
+                diceTrigger.disabled = true;
             }
         }
 
         updateRound(){
+            let dicesLeft = document.getElementById('remaining-throws');
+            let diceTrigger = document.getElementById('dice-trigger');  
             this.state.remainingThrows = 3;
+            dicesLeft.innerHTML = this.state.remainingThrows
             this.checkboxes.forEach(function(element){
-                element.disabled = false;
+                element.disabled = true;
                 element.checked = false;
             })
+            diceTrigger.disabled = false;
 
         }
-
-        //updates the round and number of throws. if remaining throws is 3 when the round starts (initiated by the button click) the checkboxes are enabled.
-        updateRoundAndThrow(){
-            //remaining throws - 1
-            //r
-            let remainingThrows = this.state.remainingThrows  
-            let dicesLeft = document.getElementById('remaining-throws');
-
-            if (remainingThrows === 3){ 
-                this.checkboxes.forEach(function(element){
-                    element.disabled = false;
-                    element.checked = false;
-                })
-            }
-
-            //kollar att det finns minst en checkbox vars checked-värde är false.
-            if(Array.from(this.checkboxes).filter(e => e.checked === false).length > 0){
-                this.state.remainingThrows -= 1        
-                this.state.round++
-            }
-
-            if(this.state.remainingThrows === 0){
-                this.state.remainingThrows = 3
-            }
-
-            dicesLeft.innerHTML = this.state.remainingThrows
-        }
-
-        //calculates the sum of the top part of the form for player 1
 
         calculateSum(){
             let bonus_element = document.getElementById('player1_bonus');
@@ -120,14 +68,35 @@ calc_tds.forEach(function(element){
 
         CheckBoxStatus (){
             let checkboxes = document.querySelectorAll('input[type="checkbox"]')
-            return Array.from(checkboxes).filter(e => e.checked === false)
+            // return Array.from(checkboxes).filter(e => e.checked === false)
+
+            //skicka index. kör map istället. returnerna index för att element som har 
+            //e.checked === false
+            return Array.from(checkboxes).map(function(element, index){
+                if(element.checked === false){
+                    return index
+                }
+            }).filter(e => e !== undefined)
         } 
         
         displayDiceValues (uncheckedArr, diceArr) {
-            for (let i = 0; i < uncheckedArr.length; i++){
-                let id = uncheckedArr[i].id.slice(9) 
-                document.querySelector(`span[id='dice-${id}']`).innerHTML = diceArr[i].value; 
-            }              
+            let checkboxes = document.querySelectorAll('input[type="checkbox"]')
+            if (uncheckedArr && diceArr){
+                for (let i = 0; i < uncheckedArr.length; i++){
+
+                    console.log(uncheckedArr);
+                    console.log(checkboxes[uncheckedArr[i]].id)
+                    let id = checkboxes[uncheckedArr[i]].id.slice(9)
+
+                    // let id = uncheckedArr[i].id.slice(9) 
+                    document.querySelector(`span[id='dice-${id}']`).innerHTML = diceArr[i].value; 
+                }   
+            }else{
+                document.querySelectorAll('span[class="dice"]').forEach(function(element){
+                    element.innerHTML = "";
+                })
+            }
+                      
         }
     }
 
@@ -138,7 +107,7 @@ calc_tds.forEach(function(element){
     }
 
     class Dice {
-        constructor(size) {
+        constructor(size = 5) {
             this.dice = [];
             this.dice_values = [0, 0, 0, 0, 0, 0, 0];        
             for (let i = 0; i < size; i++) {
@@ -162,7 +131,7 @@ calc_tds.forEach(function(element){
         }
 
         checkFullHouse(){
-            if (this.dice_values.includes(2, 0) && this.dice_values.includes(3, 0)){
+            if (this.dice_values.includes(2) && this.dice_values.includes(3)){
                 console.log(true + ' YAY FULL HOUSE');
             }else{
                 console.log(false + ' inte full house');
@@ -171,7 +140,7 @@ calc_tds.forEach(function(element){
         }
     
         checkFourOfaKind(){
-            if(this.dice_values.includes(4, 0)){
+            if(this.dice_values.includes(4)){
                 console.log(true + ' YAY FOUR OF A KIND');
             } else{
                 console.log(false + ' inte fyra av samma');
@@ -192,34 +161,42 @@ calc_tds.forEach(function(element){
     }
 
     //compare-dice-array = [];
-    let game = new GameState();
-    let interface = new Interface();
+    const game = new GameState();
+    const interface = new Interface();
+    const dice = new Dice(5);
 
     const diceTrigger = document.getElementById('dice-trigger');
-
+    const saveButton = document.getElementById('save-button');
 
     diceTrigger.addEventListener('click', function(){
-
-        // if(game.state.remainingThrows > 0){
-            
-        // }
-        game.updateRoundAndThrow(); //håller koll på hur många slag man har, vilken runda man är på
+        //gör så att man kan trycka på save.
+        if(saveButton.disabled === true){
+            saveButton.disabled = false;
+        }
+        // game.updateRoundAndThrow(); //håller koll på hur många slag man har, vilken runda man är på
         //den här ska uppdateras när värdet är. döp om till update gamestate
         let uncheckedArray = interface.CheckBoxStatus() //skapar en HTML-collection med alla checkboxar som är unchecked
-        let dice = new Dice(uncheckedArray.length); //skapar ett nytt dice-objekt med så många tärningar som det finns unchecked boxes.
-        interface.displayDiceValues(uncheckedArray, dice.dice) //skriver ut tärningsvärdena från dice-objektets dice-array på sidan.
 
+        // let dice = new Dice(uncheckedArray.length); //skapar ett nytt dice-objekt med så många tärningar som det finns unchecked boxes.
+
+        for (let index of uncheckedArray){
+            dice.dice[index] = new Die()
+        }
+
+        //här kör man skapar man nya die-objekt och pushar dom till dice-objektets array. använd motsvarande index i checked.array
+        interface.displayDiceValues(uncheckedArray, dice.dice) //skriver ut tärningsvärdena från dice-objektets dice-array på sidan.
+        
+        game.updateThrows()
         //ha möjlighet välj ett värde
         game.calculateSum()
 
     })
 
-
-
-    // while(game.state.round < 16)
-        //uppdatera DOMen med nya värden
-    // }
-
+    saveButton.addEventListener('click', function(){
+        game.updateRound()
+        saveButton.disabled = true;
+        interface.displayDiceValues();
+    })
  
 });
 
@@ -257,3 +234,39 @@ calc_tds.forEach(function(element){
 //         three
 //     }
 // }
+
+ //updates the round and number of throws. if remaining throws is 3 when the round starts (initiated by the button click) the checkboxes are enabled.
+        // updateRoundAndThrow(){
+        //     //remaining throws - 1
+        //     //r
+        //     let remainingThrows = this.state.remainingThrows  
+        //     let dicesLeft = document.getElementById('remaining-throws');
+
+        //     if (remainingThrows === 3){ 
+        //         this.checkboxes.forEach(function(element){
+        //             element.disabled = false;
+        //             element.checked = false;
+        //         })
+        //     }
+
+        //     //kollar att det finns minst en checkbox vars checked-värde är false.
+        //     if(Array.from(this.checkboxes).filter(e => e.checked === false).length > 0){
+        //         this.state.remainingThrows -= 1        
+        //         this.state.round++
+        //     }
+
+        //     if(this.state.remainingThrows === 0){
+        //         this.state.remainingThrows = 3
+        //     }
+
+        //     dicesLeft.innerHTML = this.state.remainingThrows
+        // }
+
+        //calculates the sum of the top part of the form for player 1
+
+                //disables the checkboxes when the player has 3 remaining throws. måste implementeras!
+        // disableCheckboxes(){
+        //     this.checkboxes.forEach(function(element){
+        //         element.disabled = true;
+        //     })
+        // }
