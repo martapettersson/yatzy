@@ -28,7 +28,7 @@ class Dice {
                 this.diceValue[i].innerHTML = random;
             }
         }
-        
+
         timesThrown++;
         if(timesThrown >= 3){ // när man slagit tre slag fungerar inte knappen längre
             throwDiceButton.disabled = true;
@@ -42,34 +42,36 @@ class Dice {
 
 class Gameboard {
     constructor(){
-        this.oneToSixCollection = document.querySelectorAll('input.player1');
-        this.oneToSixCollToArr = Array.from(this.oneToSixCollection);
-        this.oneToSixArray = this.oneToSixCollToArr.map((num) => { // behöver ej göra om med map?
-        return Number(num.value);
-        });
-
         this.sum = this.calculateSum();
         this.bonus = this.checkBonus();
     }
 
     calculateSum(){
-        this.reducedArray = this.oneToSixArray.reduce((sum, currValue) => {
+        let oneToSixCollection = document.querySelectorAll('input.player1');
+        let oneToSixCollToArr = Array.from(oneToSixCollection);
+        let oneToSixArray = oneToSixCollToArr.map((num) => { // behöver ej göra om med map?
+        return Number(num.value);
+
+        });
+        let reducedArray = oneToSixArray.reduce((sum, currValue) => {
             return sum + currValue;
         }, 0);
 
-        this.player1_sum = document.getElementById('player1_sum');
-        this.player1_sum.value = this.reducedArray;
+        let player1_sum = document.getElementById('player1_sum');
+        player1_sum.value = reducedArray;
     }
 
     checkBonus(){
-        this.player1_bonus = document.getElementById('player1_bonus');
-        if(this.player1_sum.value >= 63){
-            this.player1_bonus.value = 50;
+        let player1_bonus = document.getElementById('player1_bonus');
+        if(player1_sum.value >= 63){
+            player1_bonus.value = 50;
         } else{
-            this.player1_bonus.value = 0;
+            player1_bonus.value = 0;
         }
     }
 }
+
+
 
    //knappen startar allt
     let throwDiceButton = document.getElementById('throwDice');
@@ -77,6 +79,8 @@ class Gameboard {
     //håller koll på antal slag en spelare har per runda
     let timesThrown = 0; 
 
+    // let gamee = new Gameboard();
+    
     // när knappen trycks uppdateras gameBoard och tärningsformuläret. 
     throwDiceButton.addEventListener('click', function(element){ 
     
