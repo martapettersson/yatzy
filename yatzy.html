@@ -90,7 +90,7 @@
                     <td><input type="text"></td>
                     <td><input type="text"></td>
                 </tr>
-                <tr>
+                <tr id="threeof">
                     <td class="specialname">Three Of A Kind</td>
                     <td><input type="text"></td>
                     <td><input type="text"></td>
@@ -148,11 +148,23 @@
                 </tr>
             </tbody>
         </table>
-
-        <input type="text" id="name">
-        <button type="button" id ="calc">Beräkna</button>
-
     </form>
+
+    <span class='dice' id='dice-1'></span>
+    <span class='dice' id="dice-2"></span>
+    <span class='dice' id="dice-3"></span>
+    <span class='dice' id="dice-4"></span>
+    <span class='dice' id="dice-5"></span>
+    <br>
+    
+    <input id="checkbox-1" type="checkbox" disabled>
+     <input id="checkbox-2" type="checkbox" disabled>
+     <input id="checkbox-3" type="checkbox" disabled>
+     <input id="checkbox-4" type="checkbox" disabled>
+     <input id="checkbox-5" type="checkbox" disabled>
+    <br>
+    Antal kast kvar: <span id="remaining-throws">3</span>
+    <button type="button" id="dice-trigger">Slå tärningar</button>
 
     <script src="yatzy.js"></script>
 </body>
