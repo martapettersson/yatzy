@@ -38,9 +38,10 @@ class Dice {
     /*
     //metod för att uppdatera ny runda: få tre nya kast. ttimesThrown = 0;
     uppdateRound(){
-        console.log('done');
+        denna ligger i globala scopet nu, skulle det fungera att lägga den i en metod här?
 
     }*/
+
     //lägg till andra tärningsmetoder här, fullhouse osv.. 
     
 }
@@ -76,7 +77,7 @@ class Gameboard {
         let calc_tds = document.querySelectorAll('input.player1Bottom')
         let player1_TotalSum = document.getElementById('totalSumPlayer1')
        // let currentTopSum = document.query('#player1_sum'); FORTSÄTTHÄR
-        console.log(currentTopSum);
+       // console.log(currentTopSum);
         calc_tds.forEach(function(element){
              element.addEventListener('change', function(e){ 
              player1_TotalSum.value = Array.from(calc_tds).reduce((acc, curr) => acc + Number(curr.value), 0)
@@ -92,11 +93,8 @@ class Gameboard {
 
    
 
-//knappen som kastar tärning
-    let throwDiceButton = document.getElementById('throwDice');
-    
-    
 
+    
     //håller koll på antal slag en spelare har per runda
     let timesThrown = 0; 
     let round = 1;
@@ -105,16 +103,15 @@ class Gameboard {
     game.calculateSum();
     game.calculateTotalSum();
     
-    // när knappen trycks uppdateras gameBoard och tärningsformuläret. 
+    //knappen som kastar tärning
+    let throwDiceButton = document.getElementById('throwDice');
+    // när knappen trycks uppdateras tärningsformuläret. 
     throwDiceButton.addEventListener('click', function(element){ 
-    
-    let newDice = new Dice();
-    //let game = new Gameboard();
-
-       
+    let newDice = new Dice(); 
     });
 
-    // klar knappen: enablar kastknappen igen och uppdaterar antal kast till 3
+    // klar-knappen: avslutar rundan: enablar kastknappen igen och uppdaterar antal kast till 3
+    //kan man flytta delar av detta till classer istället?
     let doneButton = document.getElementById('doneButton');
     doneButton.addEventListener('click', function(){
         console.log('done');
