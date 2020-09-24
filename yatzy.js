@@ -50,68 +50,66 @@ class Dice {
 
 class Gameboard {
     constructor(){
+        this.gameState = {
+            currentPlayer: "player1",
+            timesThrown: 0,
+            players: {
+                player1: {
+                    rounds: 0
+                },
+                player2: {
+                    rounds: 0
+                }
+            }
+        }
         //this.sum = this.calculateSum();
         //this.bonus = this.checkBonus();
     }
 
-    calculateSum(){
-        let calc_tds = document.querySelectorAll('input.player1Top')
-        let player1_sum = document.getElementById('player1_sum')
-        calc_tds.forEach(function(element){
-             element.addEventListener('change', function(e){ 
-             player1_sum.value = Array.from(calc_tds).reduce((acc, curr) => 
-             acc + Number(curr.value), 0)
-            })
-        })
-    }
+    setSumListener(player){
+        let table = document.getElementById('main')
+        let player1_sum = document.getElementById(`player${player}_sum`)
+        let calc_tds = document.querySelectorAll(`input.player${player}Top`)
+        let player1_bonus = document.getElementById(`player${player}_bonus`);
+        let calc_tds2 = document.querySelectorAll(`input.player${player}Bottom`)
+        let player1_TotalSum = document.getElementById(`totalSumPlayer${player}`)
 
-    checkBonus(){
-        let player1_bonus = document.getElementById('player1_bonus');
-        if(player1_sum.value >= 63){
-            player1_bonus.value = 50;
-        } else{
-            player1_bonus.value = 0;
-        }
-    }
-    calculateTotalSum(){
-        let calc_tds = document.querySelectorAll('input.player1Bottom')
-        let player1_TotalSum = document.getElementById('totalSumPlayer1')
-       // let currentTopSum = document.query('#player1_sum'); FORTSÄTTHÄR
-       // console.log(currentTopSum);
-        calc_tds.forEach(function(element){
-             element.addEventListener('change', function(e){ 
-             player1_TotalSum.value = Array.from(calc_tds).reduce((acc, curr) => acc + Number(curr.value), 0)
-            })
+        main.addEventListener('change', function(e){ 
+
+            player1_sum.value = Array.from(calc_tds).reduce((acc, curr) => 
+            acc + Number(curr.value), 0)
+
+            if(player1_sum.value >= 63){
+                player1_bonus.value = 50;
+            } else{
+                player1_bonus.value = 0;
+            }
+
+            player1_TotalSum.value = Array.from(calc_tds2).reduce((acc, curr) => acc + Number(curr.value), 0) + 
+            Number(player1_bonus.value) + Number(player1_sum.value)
+
         })
-    }
-        
-        
+    }    
         
 }
-
-
-
-   
-
-
     
     //håller koll på antal slag en spelare har per runda
     let timesThrown = 0; 
     let round = 1;
 
     let game = new Gameboard();
-    game.calculateSum();
-    game.calculateTotalSum();
+    game.setSumListener(1);
     
     //knappen som kastar tärning
     let throwDiceButton = document.getElementById('throwDice');
     // när knappen trycks uppdateras tärningsformuläret. 
     throwDiceButton.addEventListener('click', function(element){ 
-    let newDice = new Dice(); 
+         newDice = new Dice(); 
     });
 
     // klar-knappen: avslutar rundan: enablar kastknappen igen och uppdaterar antal kast till 3
-    //kan man flytta delar av detta till classer istället?
+    //kan man flytta delar av detta till classer istället? ja det kan man flytta allt utom event-listerner.
+    //håll koll på vem som spelar genom objetet. börja med att sätt spelare till. töm alla rutor. 
     let doneButton = document.getElementById('doneButton');
     doneButton.addEventListener('click', function(){
         console.log('done');
