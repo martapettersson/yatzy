@@ -1,10 +1,10 @@
-body{
-    background-color:white;
+body {
+    background-color: white;
     font-family: Avenir;
-    text-align:center;
+    text-align: center;
 }
 
-table{
+table {
     border-collapse: collapse;
     margin: 0 auto;
 }
@@ -15,33 +15,29 @@ th {
     border-style: solid;
 }
 
-
-td{
+td {
     border: 1px;
     border-style: solid;
-    background-color:rgb(255, 161, 232);
+    background-color: rgb(255, 161, 232);
     padding: 2px;
 }
 
-input{
-    background-color:rgb(255, 161, 232);
+input {
+    background-color: rgb(255, 161, 232);
     border: 0;
     border-style: solid;
     width: 50px;
 }
-
 
 .specialrow td {
     background-color: rgb(151, 23, 255);
     text-transform: uppercase;
     border: 2px;
     border-style: solid;
-
 }
 
-.specialrow input{
+.specialrow input {
     background-color: rgb(151, 23, 255);
-
 }
 
 td:nth-child(even) {
@@ -52,15 +48,15 @@ td:nth-child(even) input {
     background-color: rgb(86, 206, 196);
 }
 
-.specialname{
+.specialname {
     background-color: rgb(255, 141, 75);
 }
 
-p{
+p {
     max-width: 20px;
     display: inline;
-    
 }
+
 #diceForm div p {
     padding: 24px;
 }
