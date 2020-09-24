@@ -33,13 +33,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 }
             }
 
-            // Uppdaterar antal gånger nuvarande spelare har slagit. När man slagit tre slag fungerar inte knappen längre.
-            game.gameState.timesThrown++;
-            if (game.gameState.timesThrown === 3) { 
-                throwDiceButton.disabled = true;
-            }
         }
-
         
     }
 
@@ -60,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 }
             }
         }
-
+        
         setSumListener(player) {
             let table = document.getElementById('main')
 
@@ -90,6 +84,15 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
             })
         }
+
+         // Uppdaterar antal gånger nuvarande spelare har slagit. När man slagit tre slag fungerar inte knappen längre.
+        updateThrow(){
+            this.gameState.timesThrown++;
+            if (this.gameState.timesThrown === 3) { 
+                throwDiceButton.disabled = true;
+            }
+        } 
+
         endRound() {
             //kontrollerar vad som händer när man trycker på klar-knappen och lämnar över sin tur.
             let currentPlayer = this.gameState.currentPlayer
@@ -138,6 +141,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     throwDiceButton.addEventListener('click', function () {
         let dice = new Dice();
         dice.throwDice();
+        game.updateThrow();
     });
 
     // klar-knappen. avslutar rundan genom att köra metoden endRound.
