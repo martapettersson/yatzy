@@ -14,13 +14,19 @@ class Die {
 class Dice {
     //metod som skriver ut tärningsvärden för de tärningar som ej är icheckade
     //uppdaterar även hur många slag spelar har kvar i denna omgång
+    constructor(size = 5) {
+        this.dice = [];
+        for (let i = 0; i < size; i++) {
+            this.dice.push(new Die());
+        }
+    }
     throwDice(){
         let diceValue = document.querySelectorAll('.dice_value');
         let checkbox = document.querySelectorAll('.checkbox');
 
         for(let i = 0; i <5; i++){ //loopar igenom alla checkboxar/tärningsvärden, om inte boxen på nuvarande index är kyssad: ge värdet på samma index ett random nummer
             if(!checkbox[i].checked){
-                let random = new Die().value; 
+                let random = this.dice[i].value; 
                 diceValue[i].innerHTML = random;
             }
         }
@@ -117,7 +123,6 @@ class Gameboard {
 }
      
     const game = new Gameboard();
-    const dice = new Dice(); 
     game.setSumListener(1);
     game.setSumListener(2);
     
@@ -127,7 +132,8 @@ class Gameboard {
     // när knappen trycks uppdateras tärningsformuläret. 
 
     throwDiceButton.addEventListener('click', function(element){ 
-         dice.throwDice();
+        let dice = new Dice(); 
+        dice.throwDice();
     });
 
     // klar-knappen: avslutar rundan: enablar kastknappen igen och uppdaterar antal kast till 3
