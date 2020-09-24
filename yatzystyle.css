@@ -10,7 +10,7 @@ table{
 }
 
 th {
-    background-color: rgb(206, 86, 202);
+    background-color: rgb(151, 23, 255);
     border: 1px;
     border-style: solid;
 }
@@ -32,7 +32,7 @@ input{
 
 
 .specialrow td {
-    background-color: rgb(206, 86, 202);
+    background-color: rgb(151, 23, 255);
     text-transform: uppercase;
     border: 2px;
     border-style: solid;
@@ -40,7 +40,7 @@ input{
 }
 
 .specialrow input{
-    background-color: rgb(206, 86, 202);
+    background-color: rgb(151, 23, 255);
 
 }
 
@@ -53,5 +53,14 @@ td:nth-child(even) input {
 }
 
 .specialname{
-    background-color: rgb(255, 126, 75);
+    background-color: rgb(255, 141, 75);
+}
+
+p{
+    max-width: 20px;
+    display: inline;
+    
+}
+#diceForm div p {
+    padding: 24px;
 }
