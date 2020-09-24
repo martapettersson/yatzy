@@ -30,8 +30,8 @@ class Dice {
             }
         }
 
-        timesThrown++;
-        if(timesThrown >= 3){ // när man slagit tre slag fungerar inte knappen längre
+        game.gamestate.timesThrown++;
+        if(game.gamestate.timesThrown >= 3){ // när man slagit tre slag fungerar inte knappen längre
             throwDiceButton.disabled = true;
         } 
     }
@@ -62,8 +62,6 @@ class Gameboard {
                 }
             }
         }
-        //this.sum = this.calculateSum();
-        //this.bonus = this.checkBonus();
     }
 
     setSumListener(player){
@@ -74,7 +72,7 @@ class Gameboard {
         let calc_tds2 = document.querySelectorAll(`input.player${player}Bottom`)
         let player1_TotalSum = document.getElementById(`totalSumPlayer${player}`)
 
-        main.addEventListener('change', function(e){ 
+        table.addEventListener('change', function(e){ 
 
             player1_sum.value = Array.from(calc_tds).reduce((acc, curr) => 
             acc + Number(curr.value), 0)
@@ -89,15 +87,19 @@ class Gameboard {
             Number(player1_bonus.value) + Number(player1_sum.value)
 
         })
-    }    
+    }
+    
+    endRound(){
+        
+    }
         
 }
     
     //håller koll på antal slag en spelare har per runda
-    let timesThrown = 0; 
+    //let timesThrown = 0; 
     let round = 1;
-
     let game = new Gameboard();
+
     game.setSumListener(1);
     
     //knappen som kastar tärning
