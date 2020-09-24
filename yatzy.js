@@ -188,7 +188,6 @@ document.addEventListener("DOMContentLoaded", function(e) {
         
         game.updateThrows()
         //ha möjlighet välj ett värde
-        game.calculateSum()
 
     })
 
@@ -196,6 +195,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
         game.updateRound()
         saveButton.disabled = true;
         interface.displayDiceValues();
+        game.calculateSum()
     })
 
     //skapa dropdownmeny
