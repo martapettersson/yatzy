@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 document.addEventListener("DOMContentLoaded", function (e) {
 
     //----------------class för en tärning----------------
@@ -94,23 +92,23 @@ document.addEventListener("DOMContentLoaded", function (e) {
         }
         endRound() {
             //kontrollerar vad som händer när man trycker på klar-knappen och lämnar över sin tur.
-            let currentPlayer = game.gameState.currentPlayer
+            let currentPlayer = this.gameState.currentPlayer
             //lägg till +1 på rounds för den spelaren som just avslutade sin tur (currentPlayer)
-            game.gameState.players[currentPlayer].round++;
+            this.gameState.players[currentPlayer].round++;
             //loggar att currentPlayer just avslutande sin x tur.
-            console.log(currentPlayer + '\'s round: ' + game.gameState.players[currentPlayer].round + ' finished');
+            console.log(currentPlayer + '\'s round: ' + this.gameState.players[currentPlayer].round + ' finished');
             //kollar om spelet är över
-            if (game.gameState.players.player2.round === 15) {
+            if (this.gameState.players.player2.round === 15) {
                 console.log('Game over')
             } else {
                 //resetta timesThrown så att nästa spelare kan kasta tärningen 3 gånger.
-                game.gameState.timesThrown = 0;
+                this.gameState.timesThrown = 0;
                 //ser till att nästa spelare kan börja slå.
                 throwDiceButton.disabled = false;
-                if (game.gameState.currentPlayer === 'player1') {
-                    game.gameState.currentPlayer = 'player2'
+                if (this.gameState.currentPlayer === 'player1') {
+                    this.gameState.currentPlayer = 'player2'
                 } else {
-                    game.gameState.currentPlayer = 'player1';
+                    this.gameState.currentPlayer = 'player1';
                 }
 
                 //tar bort alla nuvarande tärningsvärden från skärmen och uncheckar alla checkboxar så att nästa 
@@ -145,8 +143,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
     // klar-knappen. avslutar rundan genom att köra metoden endRound.
 
     let doneButton = document.getElementById('doneButton');
-    doneButton.addEventListener('click', game.endRound);
+    doneButton.addEventListener('click', function(){
+        game.endRound();
+    });
 
 
 });
->>>>>>> 81e7785848f04f96d430905cbf6c13e2045848e8
