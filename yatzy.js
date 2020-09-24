@@ -12,26 +12,21 @@ class Die {
 }
  //--------------class för tärningsuppsättning---------
 class Dice {
-    constructor(){
-        this.throw = this.throwDice();       
-
-    }
-
     //metod som skriver ut tärningsvärden för de tärningar som ej är icheckade
     //uppdaterar även hur många slag spelar har kvar i denna omgång
     throwDice(){
-        this.diceValue = document.querySelectorAll('.dice_value');
-        this.checkbox = document.querySelectorAll('.checkbox');
+        let diceValue = document.querySelectorAll('.dice_value');
+        let checkbox = document.querySelectorAll('.checkbox');
 
         for(let i = 0; i <5; i++){ //loopar igenom alla checkboxar/tärningsvärden, om inte boxen på nuvarande index är kyssad: ge värdet på samma index ett random nummer
-            if(!this.checkbox[i].checked){
+            if(!checkbox[i].checked){
                 let random = new Die().value; 
-                this.diceValue[i].innerHTML = random;
+                diceValue[i].innerHTML = random;
             }
         }
 
-        game.gamestate.timesThrown++;
-        if(game.gamestate.timesThrown >= 3){ // när man slagit tre slag fungerar inte knappen längre
+        game.gameState.timesThrown++;
+        if(game.gameState.timesThrown >= 3){ // när man slagit tre slag fungerar inte knappen längre
             throwDiceButton.disabled = true;
         } 
     }
@@ -55,10 +50,10 @@ class Gameboard {
             timesThrown: 0,
             players: {
                 player1: {
-                    rounds: 0
+                    round: 0
                 },
                 player2: {
-                    rounds: 0
+                    round: 0
                 }
             }
         }
@@ -90,44 +85,58 @@ class Gameboard {
     }
     
     endRound(){
-        
+        let currentPlayer = game.gameState.currentPlayer
+        //console.log(currentPlayer);
+        game.gameState.timesThrown = 0;
+        game.gameState.players[currentPlayer].round++;
+        console.log(currentPlayer + '\'s round: ' + game.gameState.players[currentPlayer].round + ' finished');
+        if(game.gameState.currentPlayer === 'player2' && game.gameState.players.player2.round === 15){
+            // let messageHolder = document.getElementById('messageHolder');
+            // let gameOverMessage = document.createElement('p');
+            // gameOverMessage.innerHTML = 'game Over';
+            // messageHolder.append(gameOverMessage);     
+            console.log('Game over')
+        } else {
+            throwDiceButton.disabled = false;
+            if (game.gameState.currentPlayer === 'player1'){
+                game.gameState.currentPlayer = 'player2'
+            } else {
+                game.gameState.currentPlayer = 'player1';
+            }
+
+            let diceValue = document.querySelectorAll('.dice_value');
+            let checkbox = document.querySelectorAll('.checkbox');
+            for(let i = 0; i < 5; i++){
+                diceValue[i].innerHTML = "";
+                checkbox[i].checked = false;
+
+            }
+
+        }
     }
         
 }
-    
-    //håller koll på antal slag en spelare har per runda
-    //let timesThrown = 0; 
-    let round = 1;
-    let game = new Gameboard();
-
+     
+    const game = new Gameboard();
+    const dice = new Dice(); 
     game.setSumListener(1);
+    game.setSumListener(2);
     
     //knappen som kastar tärning
     let throwDiceButton = document.getElementById('throwDice');
+
     // när knappen trycks uppdateras tärningsformuläret. 
+
     throwDiceButton.addEventListener('click', function(element){ 
-         newDice = new Dice(); 
+         dice.throwDice();
     });
 
     // klar-knappen: avslutar rundan: enablar kastknappen igen och uppdaterar antal kast till 3
     //kan man flytta delar av detta till classer istället? ja det kan man flytta allt utom event-listerner.
     //håll koll på vem som spelar genom objetet. börja med att sätt spelare till. töm alla rutor. 
-    let doneButton = document.getElementById('doneButton');
-    doneButton.addEventListener('click', function(){
-        console.log('done');
-        throwDiceButton.disabled = false;
-        timesThrown = 0;
-        round++;
-        console.log('round:' + round);
-        if(round === 15){
-            let messageHolder = document.getElementById('messageHolder');
-            let gameOverMessage = document.createElement('p');
-            gameOverMessage.innerHTML = 'game Over';
-            messageHolder.append(gameOverMessage);
-            
-        }
 
-    });
+    let doneButton = document.getElementById('doneButton');
+    doneButton.addEventListener('click', game.endRound);
 
     
     
