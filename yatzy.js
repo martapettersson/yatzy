@@ -10,17 +10,16 @@ document.addEventListener("DOMContentLoaded", function (e) {
             return Math.floor(Math.random() * 6) + 1;
         }
     }
-    //--------------class för tärningsuppsättning---------
+    //--------------class för tärningsuppsättning--------------
     class Dice {
-        //metod som skriver ut tärningsvärden för de tärningar som ej är icheckade
-        //uppdaterar även hur många slag spelar har kvar i denna omgång
+        //skapar en array som fylls med tärningsvärden
         constructor(size = 5) {
             this.dice = [];
             for (let i = 0; i < size; i++) {
                 this.dice.push(new Die());
             }
         }
-        
+        //skapar tärningsvärden för de tärningar som ej är icheckade
         throwDice() {
             let diceValue = document.querySelectorAll('.dice_value');
             let checkbox = document.querySelectorAll('.checkbox');
@@ -32,13 +31,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
                     diceValue[i].innerHTML = random;
                 }
             }
-
-        }
-        
+        }    
     }
-
     //--------------------class gameBoard -----------------------------
-
     class Gameboard {
         constructor() {
             this.gameState = {
@@ -57,19 +52,15 @@ document.addEventListener("DOMContentLoaded", function (e) {
         
         setSumListener(player) {
             let table = document.getElementById('main')
-
             let player_sum = document.getElementById(`player${player}_sum`)
             let calc_top = document.querySelectorAll(`input.player${player}Top`)
             let player_bonus = document.getElementById(`player${player}_bonus`);
-
             let calc_bottom = document.querySelectorAll(`input.player${player}Bottom`)
             let player_TotalSum = document.getElementById(`totalSumPlayer${player}`)
 
             table.addEventListener('change', function (e) {
-
                 //Räknar ihop den totala summan av den övre delen (ettor till sexor)
                 player_sum.value = Array.from(calc_top).reduce((acc, curr) => acc + Number(curr.value), 0)
-
 
                 //Räknar ut eventuell bonus
                 if (player_sum.value >= 63) {
@@ -81,7 +72,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 //Räknar ut allt genom att lägga ihop alla värden i den NEDRE DELEN (calc_bottom) + BONUS + SUMMAN (övre delen)
                 player_TotalSum.value = Array.from(calc_bottom).reduce((acc, curr) => acc + Number(curr.value), 0) +
                     Number(player_bonus.value) + Number(player_sum.value)
-
             })
         }
 
@@ -121,12 +111,9 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 for (let i = 0; i < 5; i++) {
                     diceValue[i].innerHTML = "";
                     checkbox[i].checked = false;
-
                 }
-
             }
         }
-
     }
 
     const game = new Gameboard();
