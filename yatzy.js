@@ -86,7 +86,6 @@ class Gameboard {
     
     endRound(){
         let currentPlayer = game.gameState.currentPlayer
-        //console.log(currentPlayer);
         game.gameState.timesThrown = 0;
         game.gameState.players[currentPlayer].round++;
         console.log(currentPlayer + '\'s round: ' + game.gameState.players[currentPlayer].round + ' finished');
