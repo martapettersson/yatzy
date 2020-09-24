@@ -20,10 +20,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 this.dice.push(new Die());
             }
         }
-
-
-
-
+        
         throwDice() {
             let diceValue = document.querySelectorAll('.dice_value');
             let checkbox = document.querySelectorAll('.checkbox');

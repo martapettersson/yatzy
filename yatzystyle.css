@@ -61,3 +61,6 @@ p{
     display: inline;
     
 }
+#diceForm div p {
+    padding: 24px;
+}
